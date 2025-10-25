@@ -1,6 +1,6 @@
 # Architectural software style
 
-* Status: proposed
+* Status: accepted
 * Deciders: Jaime Ochoa de Alda Cerdan and Alejandro Garcia Prada
 * Date: 2025-10-22
 
@@ -17,7 +17,7 @@ The company needs a platform to manage purchasing processes, including customer 
 
 ## Considered Options
 
-* 0001-1-MCV
+* 0001-1-MVC
 * 0001-2-3-tier-client-server-architecture
 * 0001-3-RESTful-client-server-architecture
 
@@ -31,7 +31,7 @@ Chosen option:  "0001-2-3-tier-client-server-architecture", because it's the dec
 
 ### Positive Consequences
 
-* Benefits asyncronous calls such as the ones made when needed real-time information.
+* Benefits asynchronous calls such as the ones made when needed real-time information.
 * Ensures consistency and reliability across multi-phase operations, since the business layer can persist and recover state information if a transaction fails or needs to resume.
 * Enhances security and data protection, since sensitive operations and data are isolated in the business and data layers.
 * Supports load balancing and fault tolerance, since services in each tier can be distributed across multiple servers.
@@ -45,7 +45,7 @@ Chosen option:  "0001-2-3-tier-client-server-architecture", because it's the dec
 
 ## Pros and Cons of the Options
 
-### 0001-1-MCV
+### 0001-1-MVC
 
 The MVC model (Model–View–Controller) is a way to organize the system in three parts:
 
@@ -56,7 +56,7 @@ The MVC model (Model–View–Controller) is a way to organize the system in thr
 More info: https://developer.mozilla.org/es/docs/Glossary/MVC
 
 * Good, because it's very simple and has been used largely
-* Good, because of clear responsability separation
+* Good, because of clear responsibility separation
 * Bad, because of limited scalability
 * Bad, because of the difficulties integrating asynchronous processes
 
@@ -66,7 +66,7 @@ The three-tier client-server architecture is an extension of the traditional cli
 
 * Presentation layer (Client): This layer handles user interaction and displays information. Clients can be web browsers, mobile apps, or desktop applications that request services from the server.
 
-* Business logic layer (Server): This layer processes requests, enforces rules, manages workflows, and maintains the state of complex operations such as orders, deliveries, and payments. It acts as an intermediary between the presentation and data layers.
+* Business logic layer (Server): This layer processes requests, enforces rules, manages workflows, and maintains the state of complex operations such as orders, statistics, deliveries, and payments. It acts as an intermediary between the presentation and data layers.
 
 * Data layer (Database): Responsible for storing, retrieving, and managing persistent data. It is typically accessed exclusively by the business logic layer, ensuring data integrity and security.
 
@@ -89,5 +89,5 @@ More info: https://restfulapi.net/
 * Good, because it simplifies integration for multiple client types (web, mobile, third-party services).
 * Bad, because transactional workflows require additional state management, such as tokens, databases, or orchestration services.
 * Bad, because performance depends on network latency, as each request is independent.
-* Bad, because handling delivery and routesis more complex, since the server is stateless.
+* Bad, because handling delivery and routes is more complex, since the server is stateless.
 
