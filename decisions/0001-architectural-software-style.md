@@ -66,7 +66,7 @@ The three-tier client-server architecture is an extension of the traditional cli
 
 * Presentation layer (Client): This layer handles user interaction and displays information. Clients can be web browsers, mobile apps, or desktop applications that request services from the server.
 
-* Business logic layer (Server): This layer processes requests, enforces rules, manages workflows, and maintains the state of complex operations such as orders, statistics, deliveries, and payments. It acts as an intermediary between the presentation and data layers.
+Business logic layer (Server): This layer processes requests, enforces rules, manages workflows, and maintains the state of complex operations such as orders, statistics, deliveries, incidents and payments. It acts as an intermediary between the presentation and data layers.
 
 * Data layer (Database): Responsible for storing, retrieving, and managing persistent data. It is typically accessed exclusively by the business logic layer, ensuring data integrity and security.
 
