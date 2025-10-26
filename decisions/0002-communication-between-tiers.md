@@ -1,12 +1,12 @@
-# Communication between tiers
+# Communication between Presentation layer and Business logic layer
 
 * Status: proposed
-* Deciders:Alejandro Garcia Prada
+* Deciders: Alejandro Garcia Prada
 * Date: 2025-10-25
 
 ## Context and Problem Statement
 
-After selecting a three-tier architecture (client, business logic, and data), it is necessary to define how the layers will communicate with each other. The system must support integration with external services while ensuring interoperability, security, and scalability.
+After selecting a three-tier architecture (client, business logic, and data), it is necessary to define how the Presentation layer will communicate with the Business logic layer. The system must support integration with external services while ensuring interoperability, security, and scalability.
 
 The challenge is to choose a communication protocol and data format that:
 
@@ -16,10 +16,7 @@ The challenge is to choose a communication protocol and data format that:
 
 ## Decision Drivers
 
-* RF-01 CRUD de datos personales
-* RF-04 Actualizar estado del pedido
 * RF-07 Comunicarse con servicio externo para datos de tráfico
-* RF-10 Conectarse con la pasarela de pago
 
 ## Considered Options
 
@@ -28,20 +25,17 @@ The challenge is to choose a communication protocol and data format that:
 
 ## Decision Outcome
 
-Chosen option:  "0002-1-HTTP/S Communication", because this communication between the client, business logic, and data layers allows the server to maintain necessary state information during ongoing operations.
-
-This approach combines the universality and compatibility of HTTP with the flexibility to preserve context for multi-step business processes (e.g., order lifecycle, payment authorization, delivery updates).
+Chosen option:  "0002-1-HTTP/S Communication", because this communication between the client and the business logic combines the universality and compatibility of HTTP with the flexibility to preserve context for multi-step business processes (e.g., order lifecycle, payment authorization, delivery updates).
 
 ### Positive Consequences
 
-* Preserves the ability to manage complex, stateful workflows.
 * Compatible with third-party HTTP services and internal APIs.
 * Easier debugging, monitoring, and testing with standard HTTP tools.
 
 
 ### Negative Consequences
 
-* Increased complexity in state management and session synchronization when scaling horizontally.
+* Increased complexity in state management (need to use mechanism like cookies) and session synchronization when scaling horizontally.
 * Slightly higher latency due to multiple HTTP exchanges between tiers.
 
 
@@ -49,17 +43,16 @@ This approach combines the universality and compatibility of HTTP with the flexi
 
 ### 0002-1-HTTP/S Communication
 
-Communication based on HTTP/HTTPS between layers of the n-tier architecture. The client sends requests to the business logic server, which may in turn interact with the data layer or external services. Data is typically transmitted in JSON or XML format.
+The Presentation layer communicates with the Business Logic layer through standard HTTP or HTTPS requests. Each request includes the necessary context (headers, tokens, payloads), and the server responds with a structured message, typically in JSON format.
 
 More info: https://developer.mozilla.org/en-US/docs/Web/HTTP
 
 * Good, because it is universally supported by web, mobile, and third-party clients.
 * Good, because it allows integration with third-party APIs, such as Stripe or traffic data services.
-* Good, because it enables the business logic layer to maintain state for multi-step workflows (e.g., order lifecycle, payment processing, delivery updates).
 * Good, because debugging and monitoring are easier using standard HTTP tools (Postman, curl, browser developer tools).
 * Good, because integration with existing firewalls, proxies, and load balancers is straightforward.
 * Bad, because it has higher network overhead per request-response compared to binary protocols.
-* Bad, because multiple HTTP exchanges between layers can introduce additional latency.
+* Bad, because multiple HTTP exchanges between tiers can introduce additional latency.
 
 ## 0002-2-gRPC
 
