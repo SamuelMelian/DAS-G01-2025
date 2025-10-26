@@ -1,6 +1,6 @@
 # Communication between Presentation layer and Business logic layer
 
-* Status: proposed
+* Status: accepted
 * Deciders: Alejandro Garcia Prada
 * Date: 2025-10-25
 
