@@ -1,1 +1,8 @@
 DOMAIN REQUIREMENTS
+RD-1: Protección de datos. Cumplir la normativa de protección de datos personales (por ejemplo, GDPR) al gestionar información de clientes.
+RD-2: Seguridad financiera. Los pagos deben gestionarse únicamente a través de la pasarela Stripe; no almacenar datos de tarjetas en la base de datos propia.
+RD-3: Integridad de pedidos. Cada pedido debe seguir estrictamente el flujo de tres fases: preprocesado → autorizado → aceptado; no se permite saltar fases.
+RD-4: Persistencia transaccional. Toda operación crítica (pedidos, pagos, incidencias) debe ser transaccional para garantizar consistencia ante fallos.
+RD-5: Escalabilidad mínima. El sistema debe soportar un número determinado de pedidos por hora sin degradar el servicio.
+RD-6: Compatibilidad con APIs externas. El sistema debe integrarse con APIs externas (tráfico y pagos) usando protocolos estándar (HTTP/REST, JSON).
+RD-7: Disponibilidad y recuperación. El sistema debe poder recuperarse de fallos y no perder información crítica (logs de pedidos, pagos, rutas).
