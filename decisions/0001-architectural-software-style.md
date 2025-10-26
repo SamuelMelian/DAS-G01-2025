@@ -2,7 +2,7 @@
 
 * Status: accepted
 * Deciders: Jaime Ochoa de Alda Cerdan and Alejandro Garcia Prada
-* Date: 2025-10-22
+* Date: 2025-10-25
 
 ## Context and Problem Statement
 
@@ -39,7 +39,7 @@ Chosen option:  "0001-2-3-tier-client-server-architecture", because it's the dec
 
 ### Negative Consequences
 
-* Increased latency due to multiple network hops between layers (client → business logic → data)
+* Increased latency due to multiple network hops between layers (client -> business logic -> data)
 * State synchronization challenges, especially when horizontal scaling or load balancing the business logic layer that maintains partial state.
 
 
