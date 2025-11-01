@@ -20,12 +20,12 @@ After selecting a three-tier architecture (client, business logic, and data), it
 
 Chosen option: "0004-1-TCP/IP Communication", because this communication between the business logic layer and the database provides a reliable, connection-oriented channel that ensures ordered data delivery, integrity, and compatibility across virtually all database systems. 
 
-TCP/IP allows the business tier to establish persistent, secure sessions with the data tier—supporting transactional consistency, concurrent connections through pooling, and a possible encryption via TLS/SSL when needed..
+TCP/IP allows the business tier to establish persistent, secure sessions with the data tier—supporting transactional consistency, concurrent connections through pooling, and a possible encryption via TLS/SSL when needed.
 
 ### Positive Consequences
 
 * Direct, efficient, and low-latency communication with the database.
-* Standarized protocol compatible with virtually all relational and NoSQL database engines.
+* Standardized protocol compatible with relational database engines.
 * Supports persistent connections and connection pooling to optimize performance.
 * Ensures transactional integrity and reliable data delivery.
 
@@ -40,6 +40,7 @@ TCP/IP allows the business tier to establish persistent, secure sessions with th
 ## 0004-1-TCP/IP
 
 TCP/IP provides direct socket-level communication between the business logic and the database server. It is a universal standard supported by virtually all database systems and allows secure and reliable data transmission.
+
 More info: https://www.rfwireless-world.com/terminology/tcp-ip-advantages-and-disadvantages
 
 
