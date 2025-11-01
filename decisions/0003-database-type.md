@@ -31,9 +31,9 @@ Chosen option: 0003-1-Relational Database, because the project requires strong d
 
 ### Negative Consequences
 
-* Reduced flexibility when adapting the data model; schema migrations may become complex in production environments.
-* Vertical scalability may become a bottleneck under extreme load without additional strategies (partitioning, replication).
-* May require performance optimization for frequently changing datasets (e.g., real-time statistics).
+* The rigid schema of relational databases may become a strong limitation in a food-related business domain, which is subject to frequent regulatory updates (e.g., allergen tracking, lot traceability, temperature logging). These changes can require recurring schema migrations, increasing operational effort and deployment complexity.
+* Vertical scalability may become a bottleneck under extreme load without additional strategies (sharding, replication, partitioning).
+* New data attributes added for product batches, quality incidents, or extended traceability may need careful schema evolution to avoid downtime or inconsistencies.
 
 ## Pros and Cons of the Options
 
