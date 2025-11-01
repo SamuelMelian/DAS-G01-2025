@@ -1,4 +1,4 @@
-# Specification of database relational or non-relational
+# Specification of Client Module
 
 * Status: proposed
 * Deciders: Jaime Ochoa de Alda Cerdán
@@ -6,90 +6,90 @@
 
 ## Context and Problem Statement
 
-Within the presentation tier of the system architecture, it is necessary to identify the core domain classes that will be used by client-side applications (web, mobile, desktop) to interact with the business logic tier. These classes must represent the primary entities required by users to manage orders, deliveries, payments, and incidents, while supporting identity, access configuration, and platform-specific constraints.
+Within the presentation tier of the system architecture, client-side applications (web, mobile, desktop) must interact with the business logic tier through domain classes that represent end users and the organizational platforms to which they belong. The system supports multiple users operating under the same corporate platform, sharing global policies, notification rules, and purchase preferences.
 
-Client applications need to display personal information, order status, delivery tracking, notifications, and reporting features in a consistent and structured way. Therefore, the identification of appropriate domain classes in the client module is required.
+Client applications must display personal information, order history, delivery incidents, and billing preferences while enforcing platform-level constraints such as notification channels, allowed payment methods, and order limitations. To achieve this, it is necessary to identify the core domain classes that represent these responsibilities in a structured manner.
 
 ## Decision Drivers
 
-* RF-02 Autenticar y autorizar a los usuarios
-* RF-12 Notificaciones sobre el estado del pedido
+* RF-01 CRUD de datos personales
+* RF-03 CRUD de pedidos del cliente
 * RF-09 Reportar incidencias
+* RF-12 Notificaciones sobre el estado del pedido
 * RF-15 Almacenamiento de datos de compra.
 
 ## Considered Options
 
-* 0006-1: User, ClientPlatform
+* 0006-1: User, ClientPlatform 
+    Two classes: one representing the authenticated user and another representing the corporate platform that defines shared policies for all associated users.
 * 0006-2: Customer, ClientProfile, PlatformPolicy
+    Three classes: one for basic identification, one for detailed preferences, and one for platform-wide rules.
 * 0006-3: Account, ClientContext
+    Two classes: one abstracting authentication data, and one grouping runtime context (locale, device, session metadata).
 
 ## Decision Outcome
 
-Chosen option: 0004-1 (User, ClientPlatform), because these classes clearly separate personal user identity from platform-level policies and constraints, while maintaining a simple and intuitive domain structure. The User class represents personal data, account details, contact information, and references to orders and incidents. The ClientPlatform class encapsulates environment configuration, notification preferences, billing rules, and maximum request policies that apply to every user associated with it.
+Chosen option: 0006-1 (User, ClientPlatform), because it provides a clear separation between personal user attributes and shared platform policies without introducing unnecessary complexity. The User class models personal data, purchase history, and reported incidents, while ClientPlatform centralizes notification channels, payment preferences, and purchase rules applied to multiple users.
 
-This separation improves maintainability, reduces coupling, and aligns with the system’s multi-platform and multi-user requirements.
+This separation introduces a maintainable multi-tenant structure, allowing operational policies to evolve without modifying individual users.
 
 ### Positive Consequences
 
-* User enables clear representation of identity, contact information, login credentials, and historical order tracking.
-* ClientPlatform centralizes platform-wide settings (e.g., order limitations, notification channels) without duplicating data across users.
-* Both classes integrate naturally with business domains such as deliveries, incidents, and payments.
-* Improves scalability when adding additional client companies, as platform configurations do not need to be replicated per user.
-* Reduces risk of data inconsistency by separating user attributes from operational constraints.
+* User class enables representation of personal data, historical orders, stored purchase preferences, and incident reporting.
+* ClientPlatform encapsulates platform-level policies (e.g., allowed payment methods, notification channels) shared across multiple users, reducing data duplication.
+* Simplifies enforcement of platform rules over a group of users.
+* Supports scalability as new corporate clients can be added by instantiating new platform configurations.
+* Enhances maintainability, as policy changes only occur at platform level.
 
 
 ### Negative Consequences
 
-* Additional complexity when associating multiple users to a single platform instance.
-* ClientPlatform evolution may require schema adjustments in related classes later.
-* Additional referential checks are needed to ensure that an order belongs to a valid user within a valid platform context.
+* Requires referential checks to ensure a user belongs to a valid platform.
+* Additional complexity when assigning multiple users to the same platform instance.
+* Changes to platform policies may unexpectedly affect all associated users.
 
 ## Pros and Cons of the Options
 
 ### 0006-1-User, ClientPlatform
 
-TThis option models the client with a simple two-class structure:
+This option models two distinct responsibilities:
 
-- User acts as the main domain entity, storing core attributes such as identity, contact information, and authentication data relevant to order processing.
+- User: represents an authenticated end user interacting with the system, including personal details, order references, and incident submissions.
 
-- ClientPlatform represents the platform through which the user interacts (e.g., web, mobile), encapsulating platform-dependent preferences, notification channels, or capability constraints.
+- ClientPlatform: represents the corporate platform under which users operate, defining notification channels, purchase rules, and allowed payment configurations.
 
-This approach explicitly separates domain data from platform context while keeping the class model lightweight.
-
-* Good, because it cleanly separates personal identity from platform policies.
-* Good, because it aligns with the requirement of managing multiple client applications with consistent rules.
-* Good, because it simplifies order and incident traceability per user.
-* Bad, because it introduces an extra relational dependency.
-* Bad, because modifying platform-level policies can affect all dependent users.
+* Good, because it cleanly separates personal identity from shared platform policies.
+* Good, because it supports multi-tenant usage without duplicating policy data.
+* Good, because orders and incidents can be traced directly to individual users.
+* Bad, because relationships must be validated to prevent invalid platform associations.
+* Bad, because platform-wide changes must be carefully managed to avoid unintended propagation.
 
 ## 0006-2-Customer, ClientProfile, PlatformPolicy
 
-This option provides a more decomposed representation:
+This option increases granularity by introducing three classes.
 
-- Customer is the root entity that identifies the client in the system.
+- Customer: identifies the client as the root domain entity.
 
-- ClientProfile defines user preferences, personal configuration, and auxiliary attributes not required for identification but relevant to the user experience.
+- ClientProfile: stores personal preferences relevant to user experience.
 
-- PlatformPolicy captures rules, restrictions, or behavior dependent on the client’s interaction platform (e.g., allowed delivery windows, notification rules, UI constraints).
+- PlatformPolicy: enforces platform-wide behavioral rules.
 
-This model increases modularity and supports platform governance while keeping domain data organized.
-
-* Good, because it provides finer granularity in configuration.
+* Good, because preferences and policies are isolated in separate classes.
 * Good, because responsibilities are more narrowly scoped.
-* Bad, because it creates additional classes that increase cognitive load.
-* Bad, because platform and customer configuration may fragment across files and modules.
+* Bad, because fragmentation increases cognitive load and maintenance complexity.
+* Bad, because relationships between the three classes may become tightly coupled.
 
 ## 0006-3-Account, ClientContext
 
-This option models the client from a contextual and session-oriented perspective:
+This option focuses on runtime context and authentication.
 
-- Account represents authentication credentials, authorization level, and account-bound attributes such as status (active, suspended).
+- Account: credentials, authorization, status (active/suspended).
 
-- ClientContext encapsulates runtime interaction data such as the active session, device metadata, locale, or environment parameters that may affect how operations are processed.
+- ClientContext: session-based metadata (device, locale).
 
 This structure favors architectures where the platform must adapt dynamically based on client state at execution time.
 
-* Good, because it simplifies the number of classes.
-* Good, because it reduces join operations.
-* Bad, because mixing identity, preferences, and policy in one context violates single responsibility principles.
-* Bad, because evolving requirements could lead to bloated data structures.
+* Good, because contextual data can be adapted at execution time.
+* Good, because the class model is compact.
+* Bad, because mixing identity, preferences, and runtime data violates single responsibility principles.
+* Bad, because contextual attributes are not sufficient to satisfy long-term storage requirements (RF-15).
