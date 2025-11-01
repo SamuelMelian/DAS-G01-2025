@@ -48,16 +48,11 @@ In this concrete case, we would have a superclass that create the incidents and 
 
 More info: https://refactoring.guru/design-patterns/creational-patterns
 
-Good, because:
-
-* It centralizes object creation logic.
-* It supports the Open/Closed Principle (you can add new types without modifying the inner class).
-* It decouple class that uses objects from the class that instantiates them.
-
-Bad, because:
-
-* It can lead to an increase in the number of classes (if incresing the type of incidents or related "products").
-* For very simple creation logic, it can add unnecessary abstraction.
+* Good, because it centralizes object creation logic.
+* Good, because it supports the Open/Closed Principle (you can add new types without modifying the inner class).
+* Good, because it decouple class that uses objects from the class that instantiates them.
+* Bad, because it can lead to an increase in the number of classes (if incresing the type of incidents or related "products").
+* Bad, because it For very simple creation logic, it can add unnecessary abstraction.
 
 ## 0005-2-Builder-Pattern
 
