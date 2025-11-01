@@ -10,7 +10,7 @@ After selecting a three-tier architecture it is necessary to specify the type of
 
 ## Decision Drivers
 
-* RF-12 Notificaciones sobre el estado del pedido
+* RF-03 CRUD de pedidos del cliente
 * RF-14 Registro histórico de rutas y entregas
 
 ## Considered Options
