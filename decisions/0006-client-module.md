@@ -6,9 +6,9 @@
 
 ## Context and Problem Statement
 
-Within the presentation tier of the system architecture, client-side applications (web, mobile, desktop) must interact with the business logic tier through domain classes that represent end users and the organizational platforms to which they belong. The system supports multiple users operating under the same corporate platform, sharing global policies, notification rules, and purchase preferences.
+Client-side applications (web, mobile, desktop) interact with domain classes that represent end users and the corporate platforms to which they belong. 
 
-Client applications must display personal information, order history, delivery incidents, and billing preferences while enforcing platform-level constraints such as notification channels, allowed payment methods, and order limitations. To achieve this, it is necessary to identify the core domain classes that represent these responsibilities in a structured manner.
+These classes are part of the client domain and expose the data required by the presentation tier to display personal information, order history, delivery incidents, and purchase configurations. The system supports multiple users operating under the same platform, sharing notification rules and purchase policies.
 
 ## Decision Drivers
 
@@ -29,9 +29,13 @@ Client applications must display personal information, order history, delivery i
 
 ## Decision Outcome
 
-Chosen option: 0006-1 (User, ClientPlatform), because it provides a clear separation between personal user attributes and shared platform policies without introducing unnecessary complexity. The User class models personal data, purchase history, and reported incidents, while ClientPlatform centralizes notification channels, payment preferences, and purchase rules applied to multiple users.
+Chosen option: 0006-1 (User, ClientPlatform), because it provides a well-defined separation of concerns between personal user data and platform-wide operational policies. 
 
-This separation introduces a maintainable multi-tenant structure, allowing operational policies to evolve without modifying individual users.
+User encapsulates identity, personal contact details, stored purchase preferences, historical orders, and reported delivery incidents. Meanwhile, ClientPlatform groups multiple users under a shared configuration, centralizing notification channels, allowed payment methods, and maximum order thresholds.
+
+This separation prevents policy duplication across users, reduces the risk of inconsistent configuration, and enables platform administrators to update purchase rules or notification settings without modifying individual user entities. 
+
+Additionally, the model supports a multi-tenant structure where new corporate clients can be onboarded by instantiating additional ClientPlatform configurations.
 
 ### Positive Consequences
 
