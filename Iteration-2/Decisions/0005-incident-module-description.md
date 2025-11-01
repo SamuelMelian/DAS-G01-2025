@@ -1,6 +1,6 @@
 # Incident Module Description
 
-* Status: proposed
+* Status: accepted
 * Deciders: Alejandro Garcia Prada
 * Date: 2025-11-01
 
@@ -42,7 +42,7 @@ The Builder Pattern better supports this scenario, as it allows for progressive 
 
 The Factory Pattern is a creational design pattern that provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created.
 
-Instead of instantiating classes directly (new), you delegate that responsibility to a factory that decides which class to instantiate depending on some logic.
+Instead of instantiating classes directly, you delegate that responsibility to a factory that decides which class to instantiate depending on some logic.
 
 In this concrete case, we would have a superclass that create the incidents and two subclasses for each incident type. 
 
@@ -50,9 +50,9 @@ More info: https://refactoring.guru/design-patterns/creational-patterns
 
 * Good, because it centralizes object creation logic.
 * Good, because it supports the Open/Closed Principle (you can add new types without modifying the inner class).
-* Good, because it decouple class that uses objects from the class that instantiates them.
-* Bad, because it can lead to an increase in the number of classes (if incresing the type of incidents or related "products").
-* Bad, because it For very simple creation logic, it can add unnecessary abstraction.
+* Good, because it decouples class that uses objects from the class that instantiates them.
+* Bad, because it can lead to an increase in the number of classes (if increasing the type of incidents or related "products").
+* Bad, because it for very simple creation logic, it can add unnecessary abstraction.
 
 ## 0005-2-Builder-Pattern
 
@@ -60,7 +60,7 @@ The Builder Pattern is a creational design pattern that separates the constructi
 
 Instead of passing all parameters to a constructor or relying on subclasses, the Builder provides step-by-step methods to configure and assemble an object. This makes object creation flexible, especially when many optional or conditional parameters are involved.
 
-In this concrete case, we would have a builder class responsible for constructing incident objects. Each builder could configure incidents differently depending on the client type (eg: costumer or driver ), while following the same overall construction process.
+In this concrete case, we would have a builder class responsible for constructing incident objects. Each builder could configure incidents differently depending on the client type (e.g., customer or driver), while following the same overall construction process.
 
 More info: https://refactoring.guru/design-patterns/builder
 
