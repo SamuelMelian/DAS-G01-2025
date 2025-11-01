@@ -6,4 +6,3 @@ RD-4: Persistencia transaccional. Toda operación crítica (pedidos, pagos, inci
 RD-5: Escalabilidad mínima. El sistema debe soportar un número determinado de pedidos por hora sin degradar el servicio.
 RD-6: Compatibilidad con APIs externas. El sistema debe integrarse con APIs externas (tráfico y pagos) usando protocolos estándar (HTTP/REST, JSON).
 RD-7: Disponibilidad y recuperación. El sistema debe poder recuperarse de fallos y no perder información crítica (logs de pedidos, pagos, rutas).
-RD-8: Comunicación confiable. La capa de lógica de negocio debe comunicarse con la BD a través de TCP/IP para cerciorar la entrega ordenada de datos, soporte transaccional, etc.
