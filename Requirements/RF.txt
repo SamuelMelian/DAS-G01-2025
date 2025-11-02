@@ -1,14 +1,14 @@
 FUNCTIONAL REQUIREMENTS 
-RF-0: Plataforma de gestión de compras. El sistema deberá permitir gestionar los procesos de compra de la compañía, incluyendo solicitudes, validación de proveedores y seguimiento de pedidos.
-RF-1: CRUD de datos personales. La aplicación permitirá crear, leer, actualizar y eliminar datos personales de los clientes: nombre completo, DNI, contacto, dirección e información de pago.
-RF-2: Autenticación básica (login/register). Los usuarios podrán registrarse y iniciar sesión con credenciales seguras y un sistema de 2FA por email o SMS.
-RF-3: CRUD de pedidos del cliente. La solución permitirá crear, leer, actualizar y eliminar datos de los pedidos: identificador, productos, importe, dirección, fecha y estado.
-RF-4: Actualizar estado del pedido. Cada pedido pasará por un preprocesado, autorización y aceptación, asegurando que el paso previo esté concluido antes de avanzar.
-RF-5: Gestionar flotas. Permite registrar, actualizar y eliminar información de camiones y conductores, así como asignarlos a rutas.
-RF-6: Gestionar rutas / elegir algoritmo. Permite planificar y modificar rutas de entrega, eligiendo el algoritmo de optimización más adecuado.
-RF-7: Comunicación con servicio externo de tráfico. Obtiene datos de tráfico en tiempo real desde un servicio externo para optimizar rutas y tiempos.
-RF-8: Generar estadísticas. Genera estadísticas sobre clientes, camiones y rutas para analizar eficiencia y rendimiento operativo.
-RF-9: Reportar incidencias. Permite registrar incidencias (averías, retrasos, entregas fallidas) y notificar a los responsable.
+RF-00: Plataforma de gestión de compras. El sistema deberá permitir gestionar los procesos de compra de la compañía, incluyendo solicitudes, validación de proveedores y seguimiento de pedidos.
+RF-01: CRUD de datos personales. La aplicación permitirá crear, leer, actualizar y eliminar datos personales de los clientes: nombre completo, DNI, contacto, dirección e información de pago.
+RF-02: Autenticación básica (login/register). Los usuarios podrán registrarse y iniciar sesión con credenciales seguras y un sistema de 2FA por email o SMS.
+RF-03: CRUD de pedidos del cliente. La solución permitirá crear, leer, actualizar y eliminar datos de los pedidos: identificador, productos, importe, dirección, fecha y estado.
+RF-04: Actualizar estado del pedido. Cada pedido pasará por un preprocesado, autorización y aceptación, asegurando que el paso previo esté concluido antes de avanzar.
+RF-05: Gestionar flotas. Permite registrar, actualizar y eliminar información de camiones y conductores, así como asignarlos a rutas.
+RF-06: Gestionar rutas / elegir algoritmo. Permite planificar y modificar rutas de entrega, eligiendo el algoritmo de optimización más adecuado.
+RF-07: Comunicación con servicio externo de tráfico. Obtiene datos de tráfico en tiempo real desde un servicio externo para optimizar rutas y tiempos.
+RF-08: Generar estadísticas. Genera estadísticas sobre clientes, camiones y rutas para analizar eficiencia y rendimiento operativo.
+RF-09: Reportar incidencias. Permite registrar incidencias (averías, retrasos, entregas fallidas) y notificar a los responsable.
 RF-10: Conectarse con pasarela de pago. Se integra con Stripe para procesar pagos de forma segura, validando transacciones y notificando resultados.
 RF-11: Validar datos personales. Valida los datos introducidos por los clientes (correo, teléfono, dirección) evitando duplicados o errores.
 RF-12: Notificaciones sobre el estado del pedido. Envía notificaciones automáticas (email/SMS) cuando el pedido cambia de estado.
