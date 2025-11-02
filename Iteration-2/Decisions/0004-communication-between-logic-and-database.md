@@ -1,6 +1,6 @@
 # Communication between logic and database
 
-* Status: proposed
+* Status: accepted
 * Deciders: Alejandro Garcia Prada
 * Date: 2025-10-30
 
@@ -10,7 +10,7 @@ After selecting a three-tier architecture (client, business logic, and data), it
 
 ## Decision Drivers
 
-* RF-01 CRUD de datos personales
+* RF-17 Almacenamiento y consulta de información persistente
 
 ## Considered Options
 
