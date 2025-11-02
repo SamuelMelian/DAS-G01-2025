@@ -1,6 +1,6 @@
 # Presentation tier description
 
-* Status: proposed
+* Status: accepted
 * Deciders: Alejandro Garcia Prada and Jaime Ochoa de Alda Cerdán
 * Date: 2025-11-02
 
@@ -13,7 +13,7 @@ The goal is to design a SOLID and maintainable solution that clearly defines pre
 
 ## Decision Drivers
 
-* RF-07 Comunicarse con servicio externo para datos de tráfico
+* RF-16 Gestión de permisos de usuarios internos
 
 ## Considered Options
 
@@ -40,7 +40,7 @@ This design decision promotes flexibility and scalability while maintaining a cl
 
 ## Pros and Cons of the Options
 
-### 0002-1-Bridge Pattern
+### 0006-1-Bridge Pattern
 
 The Bridge Pattern decouples abstraction from implementation, allowing both to evolve independently.
 In the presentation tier, this means that user interfaces (UI components) and user behavior models can be developed and extended separately, avoiding rigid dependencies.
@@ -54,7 +54,7 @@ More info: https://www.geeksforgeeks.org/system-design/bridge-design-pattern/
 * Bad, because it introduces additional classes and interfaces, increasing structural complexity.
 * Bad, because the interface is not flexible and all the concrete clases must follow it.
 
-## 0002-2-Facade Pattern
+## 0006-2-Facade Pattern
 
 The Facade Pattern provides a unified and simplified interface to a set of interfaces in a subsystem.
 In the presentation tier, this means that user interfaces interact through a single access point that hides the complexity of underlying business logic and services.
