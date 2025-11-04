@@ -17,11 +17,10 @@ The system must manage delivery routes and optimize them according to different 
 
 * 0007-1 – Strategy Pattern
 * 0007-2 – Template Method
-* 0007-3 – Hardcoded Conditional Logic
 
 ## Decision Outcome
 
-Chosen option: 0007-1 – Strategy Pattern. This approach was selected because it encapsulates each algorithm in its own class, making them interchangeable and easy to extend. It directly supports runtime selection and aligns with SOLID principles, especially Open/Closed. Compared to the other options, it offers the best balance between flexibility, maintainability, and scalability.
+Chosen option: 0007-1 – Strategy Pattern. It decouples algorithm selection from execution via a stable interface, enabling interchangeable implementations and clean evolution. It supports runtime selection driven by route context while keeping business logic independent of concrete algorithms. Compared to Template Method, it favors composition over inheritance, which limits coupling and makes extensions safer.
 
 ### Positive Consequences
 
@@ -32,8 +31,8 @@ Chosen option: 0007-1 – Strategy Pattern. This approach was selected because i
 
 ### Negative Consequences
 
-* The number of classes and abstractions grows, which may increase learning curve for new developers.
-* Requires careful design of the selection logic to avoid complexity in the factory or context.
+* More types to manage (interface plus implementations) increases structural surface area.
+* Requires a clear selection mechanism (e.g., a selector component) to keep choosing logic cohesive.
 
 ## Pros and Cons of the Options
 
@@ -44,29 +43,17 @@ The Strategy Pattern encapsulates each optimization algorithm in its own class a
 * Good, because algorithms are interchangeable and easy to extend.
 * Good, because promotes SOLID principles and clean separation of concerns.
 * Good, because supports runtime flexibility and dynamic selection.
-* Good, because facilitates unit testing and mocking.
-* Bad, because increases the number of classes and abstractions.
-* Bad, because requires a factory or context object to manage selection.
-* Bad, becuase developers must understand the pattern to avoid misuse.
+* Good, because promotes decoupling and testability by isolating algorithm behavior.
+* Bad, because More classes to manage; requires disciplined packaging and naming to avoid sprawl.
+* Bad, because needs a well-defined selector to avoid scattering “which algorithm” logic across the codebase.
 
 ## 0007-2–Template-Method
 
-The Template Method defines a skeleton of the optimization process, with common steps implemented in a base class and specific logic The Template Method defines a skeleton of the optimization process, with common steps implemented in a base class and specific logic in subclasses. It ensures consistency across algorithms but enforces a rigid inheritance structure.in subclasses. It ensures consistency across algorithms but enforces a rigid inheritance structure.
+The Template Method defines a skeleton of the optimization process, with common steps implemented in a base class and specific logic The Template Method defines a skeleton of the optimization process, with common steps implemented in a base class and specific logic in subclasses. It ensures consistency across algorithms but enforces a rigid inheritance structure in subclasses. It ensures consistency across algorithms but enforces a rigid inheritance structure.
 
-* Good, because reduces code duplication by standardizing common steps.
-* Good, because provides a clear workflow for all algorithms.
-* Good, because easier for junior developers to follow a fixed template.
-* Bad, because limits flexibility due to inheritance constraints.
-* Bad, because adding new algorithms may require modifying the base class.
-* Bad, because it can lead to fragile hierarchies if overused.
-
-## 0007-3–Hardcoded-Conditional-Logic
-
-This option implements all algorithms in a single class, using conditional statements to decide which one to apply. It is simple to implement initially but quickly becomes unmaintainable as the system grows.
-
-* Good, because very simple to implement with minimal abstractions.
-* Good, because easy to understand for small systems or prototypes.
-* Bad, because violates Open/Closed Principle, requiring code changes for new algorithms.
-* Bad, because becomes unmaintainable as the number of algorithms grows.
-* Bad, because testing is harder due to tight coupling.
-* Bad, because encourages duplication and scattered logic.
+* Good, because it standardizes shared steps across all algorithms, ensuring consistency in the workflow.
+* Good, because it reduces code duplication by centralizing common logic in the base class.
+* Good, because it provides a clear and predictable process structure, making the overall flow easier to understand.
+* Bad, because it enforces inheritance, which reduces flexibility and can create rigid hierarchies.
+* Bad, because modifying the base class to change the skeleton may impact all subclasses, introducing fragility.
+* Bad, because it makes it harder to support algorithms that require different flows, leading to duplication or workarounds.
