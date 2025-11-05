@@ -31,7 +31,7 @@ Chosen option: 0007-1 – Strategy Pattern. It decouples algorithm selection fro
 
 ### Negative Consequences
 
-* More types to manage (interface plus implementations) increases structural surface area.
+* Requires additional implementation units to be maintained, increasing the amount of logic the team must track across the codebase.
 * Requires a clear selection mechanism (e.g., a selector component) to keep choosing logic cohesive.
 
 ## Pros and Cons of the Options
@@ -41,19 +41,19 @@ Chosen option: 0007-1 – Strategy Pattern. It decouples algorithm selection fro
 The Strategy Pattern encapsulates each optimization algorithm in its own class and allows them to be interchangeable at runtime. This makes it easy to add or replace algorithms without modifying existing code.
 
 * Good, because algorithms are interchangeable and easy to extend.
-* Good, because promotes SOLID principles and clean separation of concerns.
+* Good, because it isolates the varying route-optimization behavior behind a common interface, avoiding conditional logic scattered across the codebase.
 * Good, because supports runtime flexibility and dynamic selection.
 * Good, because promotes decoupling and testability by isolating algorithm behavior.
-* Bad, because More classes to manage; requires disciplined packaging and naming to avoid sprawl.
+* Bad, because more classes to manage; requires disciplined packaging and naming to avoid sprawl.
 * Bad, because needs a well-defined selector to avoid scattering “which algorithm” logic across the codebase.
 
 ## 0007-2–Template-Method
 
 The Template Method defines a skeleton of the optimization process, with common steps implemented in a base class and specific logic The Template Method defines a skeleton of the optimization process, with common steps implemented in a base class and specific logic in subclasses. It ensures consistency across algorithms but enforces a rigid inheritance structure in subclasses. It ensures consistency across algorithms but enforces a rigid inheritance structure.
 
-* Good, because it standardizes shared steps across all algorithms, ensuring consistency in the workflow.
-* Good, because it reduces code duplication by centralizing common logic in the base class.
-* Good, because it provides a clear and predictable process structure, making the overall flow easier to understand.
-* Bad, because it enforces inheritance, which reduces flexibility and can create rigid hierarchies.
-* Bad, because modifying the base class to change the skeleton may impact all subclasses, introducing fragility.
-* Bad, because it makes it harder to support algorithms that require different flows, leading to duplication or workarounds.
+* Good, because shared steps in route processing remain consistent across algorithms.
+* Good, because placing common behavior in the base class reduces duplicated logic.
+* Good, because it provides an explicit sequence of operations, making the optimization procedure predictable.
+* Bad, because enforcing inheritance restricts flexibility and increases coupling to a single hierarchy.
+* Bad, because changes in the base workflow risk affecting all subclasses simultaneously, creating fragility.
+* Bad, because algorithms with different execution flows are harder to support, leading to duplication or workaround logic.
