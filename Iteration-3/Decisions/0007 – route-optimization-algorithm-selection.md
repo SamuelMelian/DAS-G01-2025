@@ -1,6 +1,6 @@
 # Route Optimization Algorithm Selection
 
-* Status: proposed
+* Status: aproved
 * Deciders: Jaime Ochoa de Alda Cerdán
 * Date: 2025-11-04
 
