@@ -6,11 +6,10 @@
 
 ## Context and Problem Statement
 
-The system must process customer orders through a strict sequence of three phases: preprocessing, authorization, and acceptance. Each phase must be completed successfully before moving to the next, and skipping steps is not allowed. TThis sequential validation is critical to prevent inconsistent order states and ensure that business rules tied to each phase are properly enforced. The architecture must support this flow in a way that is maintainable, extensible, and scalable under high load.
+The system must process customer orders through a strict sequence of three phases: preprocessing, authorization, and acceptance. Each phase must be completed successfully before moving to the next, and skipping steps is not allowed. This sequential validation is critical to prevent inconsistent order states and ensure that business rules tied to each phase are properly enforced. The architecture must support this flow in a way that is maintainable, extensible, and scalable under high load.
 
 ## Decision Drivers
 
-* RF-03 CRUD de pedidos del cliente
 * RF-04 Actualizar estado del pedido
 
 ## Considered Options
@@ -32,7 +31,7 @@ This pattern models the order flow as a sequence of handlers, each responsible f
 ### Negative Consequences
 
 * Because the execution is distributed across multiple handlers, debugging may require tracing the entire processing flow to identify the failure point.
-* The chain configuration must remain consistent across environments; an incorrect ordering could allow authorization or acceptance to execute prematurely.
+* Because the execution depends on the order in which handlers are linked, implementation mistakes during chain construction can lead to incorrect phase sequencing.
 
 ## Pros and Cons of the Options
 
@@ -51,6 +50,6 @@ Each order phase is modeled as a state object, and the order transitions between
 
 * Good, because it encapsulates behavior per state and reflects the current phase explicitly.
 * Good, because it allows state-specific logic and transitions.
-* Bad, because strict sequencing must be enforced manually, undermining the benefit of the pattern’s flexibility.
-* Bad, because adding new states may require changes to the state machine logic.
+* Bad, because its transition flexibility may allow alternative phase paths unless constrained explicitly, which does not align with a single fixed sequence.
+* Bad, because extending the state model can require reviewing transition rules to avoid unintended paths, increasing effort when new phases are introduced.
 * Bad, because its flexibility allows multiple transition paths unless additional constraints are implemented.
