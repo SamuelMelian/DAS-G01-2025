@@ -30,8 +30,8 @@ This pattern models the order flow as a sequence of handlers, each responsible f
 
 ### Negative Consequences
 
-* Because the execution is distributed across multiple handlers, debugging may require tracing the entire processing flow to identify the failure point.
-* Because the execution depends on the order in which handlers are linked, implementation mistakes during chain construction can lead to incorrect phase sequencing.
+* Because the processing logic is split across multiple handlers, debugging may require tracing the entire processing flow to identify the failure point.
+* Bad, because the processing order is implicitly defined by how handlers are chained, which may reduce readability as the number of phases grows.
 
 ## Pros and Cons of the Options
 
@@ -42,7 +42,7 @@ Each phase of the order process is implemented as a handler in a chain. The orde
 * Good, because it enforces sequential validation and prevents skipping steps.
 * Good, because each phase is encapsulated, allowing independent testing and easier evolution of individual steps.
 * Bad, because debugging failures may require inspecting multiple handlers.
-* Bad, because handler registration order must be carefully managed.
+* Bad, because the processing order is implicit, so understanding or modifying the sequence may require reviewing the entire chain.
 
 ## 0008-2-State Pattern
 
@@ -50,6 +50,5 @@ Each order phase is modeled as a state object, and the order transitions between
 
 * Good, because it encapsulates behavior per state and reflects the current phase explicitly.
 * Good, because it allows state-specific logic and transitions.
-* Bad, because its transition flexibility may allow alternative phase paths unless constrained explicitly, which does not align with a single fixed sequence.
-* Bad, because extending the state model can require reviewing transition rules to avoid unintended paths, increasing effort when new phases are introduced.
-* Bad, because its flexibility allows multiple transition paths unless additional constraints are implemented.
+* Bad, because its flexibility allows defining multiple valid transition paths, which requires additional constraints to enforce a single immutable sequence.
+* Bad, because applying the pattern can be overkill when the state machine is small and unlikely to change.
