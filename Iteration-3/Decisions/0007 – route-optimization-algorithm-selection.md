@@ -25,7 +25,7 @@ Chosen option: 0007-1 – Strategy Pattern. It decouples algorithm selection fro
 ### Positive Consequences
 
 * The system can evolve easily as new algorithms are introduced.
-* Teams can work in parallel on different strategies without conflicts.
+* Strategies can evolve in parallel when the shared interface remains stable.
 * Testing and debugging are simplified because each algorithm is isolated.
 
 
@@ -43,8 +43,8 @@ The Strategy Pattern encapsulates each optimization algorithm in its own class a
 * Good, because algorithms are interchangeable and easy to extend.
 * Good, because it isolates the varying route-optimization behavior behind a common interface, avoiding conditional logic scattered across the codebase.
 * Good, because supports runtime flexibility and dynamic selection.
-* Good, because promotes decoupling and testability by isolating algorithm behavior.
-* Bad, because more classes to manage; requires disciplined packaging and naming to avoid sprawl.
+* Good, because isolating algorithms improves clarity and testability, allowing each optimization strategy to evolve independently.
+* Bad, because strategies may diverge over time if shared behavior is duplicated, introducing subtle inconsistencies unless common logic is refactored.
 * Bad, because needs a well-defined selector to avoid scattering “which algorithm” logic across the codebase.
 
 ## 0007-2–Template-Method
