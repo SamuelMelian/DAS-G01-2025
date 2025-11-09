@@ -11,7 +11,7 @@ The system must manage delivery routes and optimize them according to different 
 ## Decision Drivers
 
 * RF-06 Gestionar rutas / elegir algoritmo
-* RF-14 Selección automática de algoritmo
+* RF-13 Selección automática de algoritmo
 
 ## Considered Options
 
