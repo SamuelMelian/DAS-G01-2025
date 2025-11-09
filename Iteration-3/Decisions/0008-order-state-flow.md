@@ -1,6 +1,6 @@
 # Order State Flow
 
-* Status: proposed
+* Status: approved
 * Deciders: Jaime Ochoa de Alda Cerdán
 * Date: 2025-11-05
 
