@@ -1,6 +1,6 @@
 # Database communication encriptation
 
-* Status: proposed
+* Status: accepted
 * Deciders: Alejandro Garcia Prada
 * Date: 2025-11-06
 
@@ -10,12 +10,13 @@ The system handles sensitive client information, including personal and potentia
 
 ## Decision Drivers
 
+* RF-02 Autenticación básica (login/register)
+* RF-11 Validar datos personales
 
 ## Considered Options
 
 * 0009-1-TLS
 * 0009-2-Client-side-encriptation
-
 
 ## Decision Outcome
 
@@ -46,7 +47,7 @@ More info: https://dev-aditya.medium.com/tls-over-tcp-protocols-how-secure-inter
 
 * Good, because it provides encryption, keeping data private and secure during transmission.
 * Good, because it ensures data integrity, preventing information from being changed or corrupted.
-* Good, because it authenticates the server (and sometimes the client), helping confirm identities and build trust.
+* Good, because it authenticates the server, helping confirm identities and build trust.
 * Bad, because it adds extra processing overhead, which can slightly reduce performance.
 * Bad, because it can make troubleshooting and monitoring network traffic more difficult due to encryption.
 * Bad, because it increases the connection setup time due to the TLS handshake process.
