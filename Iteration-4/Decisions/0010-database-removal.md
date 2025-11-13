@@ -20,11 +20,10 @@ Therefore, the previous database-related decisions are no longer aligned with th
 ## Considered Options
 
 * 0010-1-Remove-Database-Layer-Entirely
-* 0010-2-Keep-lightweight-database-for-logging-or-caching
 
 ## Decision Outcome
 
-Chosen option: 0010-1-Remove-Database-Layer-Entirely, because the client’s updated specifications confirm that no data persistence or storage of customer, order, or delivery information is required.
+Chosen option: 0010-1-Remove-Database-Layer-Entirely, because the client's updated specifications confirm that no data persistence or storage of customer, order, or delivery information is required.
 
 This decision supersedes and invalidates the following:
 
@@ -32,20 +31,19 @@ This decision supersedes and invalidates the following:
 - 0004-Communication Between Logic and Database
 - 0009-Database Communication Encryption
 
-The system will instead operate in a stateless mode, where transient data is processed in memory and exchanged directly between the application’s modules and external services. This simplifies the architecture and eliminates unnecessary database configuration, ORM logic, and encryption overhead.
+The system specification will remain independent of data storage mechanisms, focusing only on process and interaction design between modules. This simplifies the architecture and eliminates unnecessary database configuration, ORM logic, and encryption overhead.
 
 ### Positive Consequences
 
 * Reduces system complexity and infrastructure costs.
 * Eliminates the need for database management, migrations, or backups.
-* Improves deployment simplicity and reduces integration points.
-* Removes potential vulnerabilities related to data persistence or access control.
+* Simplifies the current architecture by removing unnecessary assumptions about the database layer.
 
 ### Negative Consequences
 
-* No long-term data persistence — historical information (orders, deliveries, incidents) cannot be recovered once processed.
+* Persistent data handling is postponed, limiting the system’s ability to demonstrate long-term behavior within the current scope.
 * Some functionalities that relied on stored data (e.g., reporting, historical analytics) must be redesigned or dropped.
-* Real-time dependencies increase — system availability now depends more strongly on external service uptime.
+* Real-time dependencies increase system availability now depends more strongly on external service uptime.
 
 ## Pros and Cons of the Options
 
@@ -58,12 +56,3 @@ All data would be processed and exchanged in real time between the application�
 * Good, because it eliminates redundant architectural components.
 * Bad, because it prevents future extensibility in case persistence becomes required.
 * Bad, because removing the data layer makes it harder to simulate real scenarios for testing.
-
-## 0010-2-Keep-Lightweight-Database-for-Logging-or-Caching
-
-This option suggests retaining a minimal in-memory or lightweight database to temporarily store transient data, logs, or cache results that might assist during processing or debugging. Although it introduces a basic form of persistence, the goal is not to maintain business data but to improve runtime support and traceability during execution.
-
-* Good, because it would allow minimal persistence of logs or transient session data.
-* Good, because it could help debugging or auditing temporary events.
-* Bad, because it contradicts the explicit client request of “no stored information.”
-* Bad, because it reintroduces unnecessary components and costs for a non-required feature.
