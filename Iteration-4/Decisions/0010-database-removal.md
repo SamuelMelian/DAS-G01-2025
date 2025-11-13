@@ -42,7 +42,6 @@ The system specification will remain independent of data storage mechanisms, foc
 ### Negative Consequences
 
 * Persistent data handling is postponed, limiting the system’s ability to demonstrate long-term behavior within the current scope.
-* Some functionalities that relied on stored data (e.g., reporting, historical analytics) must be redesigned or dropped.
 * Real-time dependencies increase system availability now depends more strongly on external service uptime.
 
 ## Pros and Cons of the Options
