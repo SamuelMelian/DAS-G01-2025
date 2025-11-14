@@ -8,7 +8,7 @@
 
 During the initial architectural design, several decisions were made regarding the use of a relational database, the communication layer between the logic and data tiers, and the encryption of that communication (0003, 0004, 0009).
 
-However, after further analysis of the client’s requirements, it became clear that the system is not required to persist information. The application processes operational data in memory and communicates with external services, without storing internal datasets.
+However, after further analysis of the client's requirements, it became clear that the system is not required to persist information. The application processes operational data in memory and communicates with external services, without storing internal datasets.
 
 Therefore, the previous database-related decisions are no longer aligned with the actual business and functional requirements, and must be revoked.
 
@@ -36,12 +36,11 @@ The system specification will remain independent of data storage mechanisms, foc
 ### Positive Consequences
 
 * Reduces system complexity and infrastructure costs.
-* Eliminates the need for database management, migrations, or backups.
 * Simplifies the current architecture by removing unnecessary assumptions about the database layer.
 
 ### Negative Consequences
 
-* Persistent data handling is postponed, limiting the system’s ability to demonstrate long-term behavior within the current scope.
+* Persistent data handling is postponed, limiting the system's ability to demonstrate long-term behavior within the current scope.
 * Real-time dependencies increase system availability now depends more strongly on external service uptime.
 
 ## Pros and Cons of the Options
