@@ -17,7 +17,7 @@ The Bridge Pattern decision (0006-presentation-tier-description) is therefore an
 ## Decision Drivers
 
 * Simplify the presentation layer by removing unnecessary abstractions.
-* Ensure scalability and device independence through the API Gateway.
+* Ensure support for new client types through the API Gateway, without requiring changes in the internal model.
 * Centralize authentication and routing in a single access layer.
 * Maintain compatibility with existing and future client origins (mobile, web, desktop).
 
@@ -41,7 +41,7 @@ Communication is performed via HTTP/HTTPS, making the internal design independen
 
 ### Negative Consequences
 
-* The presentation tier becomes thinner, which may require more detailed specifications for Gateway behavior in future iterations.
+* The presentation tier removes its platform-specific classes and responsibilities, which may require defining more detailed Gateway behavior in future iterations.
 * Internal components lose platform-specific hooks, which may require alternative mechanisms if platform-dependent logic is ever needed.
 
 ## Pros and Cons of the Options
