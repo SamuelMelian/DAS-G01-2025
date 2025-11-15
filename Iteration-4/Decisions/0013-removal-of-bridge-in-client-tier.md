@@ -16,10 +16,10 @@ The Bridge Pattern decision (0006-presentation-tier-description) is therefore an
 
 ## Decision Drivers
 
-* Simplify the presentation layer by removing unnecessary abstractions.
+* Simplify the presentation tier by removing platform-specific client abstractions that are no longer needed when using an API Gateway.
 * Ensure support for new client types through the API Gateway, without requiring changes in the internal model.
-* Centralize authentication and routing in a single access layer.
-* Maintain compatibility with existing and future client origins (mobile, web, desktop).
+* Centralize request routing and apply consistent access control rules through a single entry point.
+* Ensure compatibility with current and future client origins, since all of them communicate with the system through standard HTTP/HTTPS requests to the API Gateway.
 
 ## Considered Options
 
@@ -34,14 +34,14 @@ Communication is performed via HTTP/HTTPS, making the internal design independen
 
 ### Positive Consequences
 
-* Reduces architectural complexity, eliminating redundant layers no longer needed with a Gateway.
+* Reduces internal complexity by removing platform-specific classes that will become redundant once the Gateway handles client differentiation.
 * Centralizes all client interactions, making the system easier to reason about and maintain.
 * Improves extensibility, since new clients do not require new platform-specific classes, only Gateway configuration.
-* Avoids duplicated responsibilities, since request formatting and adaptation are handled by the Gateway alone.
+* Avoids adding unnecessary responsibilities inside the presentation tier, since request adaptation is already handled by the API Gateway.
 
 ### Negative Consequences
 
-* The presentation tier removes its platform-specific classes and responsibilities, which may require defining more detailed Gateway behavior in future iterations.
+* The presentation tier removes its platform-specific classes, relying fully on the Gateway to provide a unified entry point.
 * Internal components lose platform-specific hooks, which may require alternative mechanisms if platform-dependent logic is ever needed.
 
 ## Pros and Cons of the Options
@@ -53,7 +53,7 @@ Replace platform-specific classes with a single Client entity that interacts wit
 * Good, because it centralizes all external communication through the Gateway.
 * Good, because it removes unnecessary abstractions that no longer provide value.
 * Good, because new client types can be added without modifying internal classes.
-* Bad, because platform-specific rendering or behavior must now be handled entirely outside the system.
+* Bad, because platform-specific concerns now depend completely on external clients, which may require clearer documentation to ensure consistent integration.
 
 
 
