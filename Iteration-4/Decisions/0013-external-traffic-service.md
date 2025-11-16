@@ -19,7 +19,7 @@ RF-07: Comunicación con servicio externo de tráfico
 
 ## Decision Outcome
 
-Chosen option: "0013-1-HERE Traffic API", because it provides the most suitable functional capabilities for our routing algorithms and distribution workflows. HERE offers real-time traffic data, historical traffic patterns, road-segment-level speed information, and incident reports, all of which directly improve route optimization and ETA (Estimated Time of Arrival) accuracy. Its APIs are designed for logistics and fleet routing, making it functionally the best fit for our use case.
+Chosen option: "0013-2-HERE Traffic API", because it provides the most suitable functional capabilities for our routing algorithms and distribution workflows. HERE offers real-time traffic data, historical traffic patterns, road-segment-level speed information, and incident reports, all of which directly improve route optimization and ETA (Estimated Time of Arrival) accuracy. Its APIs are designed for logistics and fleet routing, making it functionally the best fit for our use case.
 
 ### Positive Consequences
 
