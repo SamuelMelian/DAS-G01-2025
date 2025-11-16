@@ -23,11 +23,11 @@ The Bridge Pattern decision (0006-presentation-tier-description) is therefore an
 
 ## Considered Options
 
-* 0013-1-Unified-Client-via-API-Gateway
+* 0014-1-Unified-Client-via-API-Gateway
 
 ## Decision Outcome
 
-Chosen option: 0013-1-Unified-Client-via-API-Gateway.
+Chosen option: 0014-1-Unified-Client-via-API-Gateway.
 The presentation tier is simplified by removing platform-specific client classes and keeping a single client model. All external clients (web, mobile, desktop) now interact with the system exclusively through the API Gateway, which handles routing and request normalization. 
 
 Communication is performed via HTTP/HTTPS, making the internal design independent of the client’s origin. This avoids duplicating logic already handled by the gateway and keeps the system extensible for future client types.
@@ -46,7 +46,7 @@ Communication is performed via HTTP/HTTPS, making the internal design independen
 
 ## Pros and Cons of the Options
 
-## 0013-1-Unified-Client-via-API-Gateway
+## 0014-1-Unified-Client-via-API-Gateway
 
 Replace platform-specific classes with a single Client entity that interacts with the system exclusively through the API Gateway. The gateway manages all external requests, providing device-agnostic access.
 
