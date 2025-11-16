@@ -6,7 +6,7 @@
 
 ## Context and Problem Statement
 
-One of the pillars of our system is ensuring that distribution is adequate. For that, optimized route management through the two algorithms is necessary. But for them to be effective, we need estimated traffic data. Therefore, we need to connect to an external service to obtain traffic estimates.
+One of the pillars of our system is ensuring that distribution is adequate. For that, optimized route management through the two algorithms is necessary. But for them to be effective, we need estimated traffic data. Therefore, we need to connect to an external service.
 
 ## Decision Drivers
 
