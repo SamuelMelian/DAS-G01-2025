@@ -15,7 +15,7 @@ RF-07: Comunicación con servicio externo de tráfico
 ## Considered Options
 
 * 0013-1-Google Maps API
-* 0013-1-HERE Traffic API
+* 0013-2-HERE Traffic API
 
 ## Decision Outcome
 
